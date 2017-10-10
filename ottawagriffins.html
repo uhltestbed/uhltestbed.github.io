@@ -1,8 +1,30 @@
 <html>
-<body>
+<script src="tabletop.js"></script> 
+<script type="text/javascript">
+  function init() {
+    Tabletop.init( { key: ‘1acfPFGKbL8C_c19xyuQ3aHrq7iTI1kjzw5yyPVnNUcs’,
+    callback: showInfo,
+    simpleSheet: true } )
+    }
+    function showInfo(data, tabletop) {
+    console.log(data);
+    for (var i = 0; i < data.length; i++) {
+    $(‘.post’).append(
+    ‘<div class=”player”>’ +
+    ‘<h1>’ + data[i].player-name + ‘</h1>’+
+    data[i].body +
+    ‘</div>);
+    }
+    }
+    window.addEventListener(‘DOMContentLoaded’, init)
+  </script>
+  <body>
 
 <div class=”post”>
-test
+
+  
+    
+  
 </div>
 
 </body>
