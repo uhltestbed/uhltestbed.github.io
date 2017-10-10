@@ -1,5 +1,6 @@
 <script type="text/javascript">
-
+<script src="tabletop/src/tabletop.js"></script>  
+ 
 function init() {
  Tabletop.init( { key: ‘https://docs.google.com/spreadsheets/d/1acfPFGKbL8C_c19xyuQ3aHrq7iTI1kjzw5yyPVnNUcs/pubhtml',
  callback: function(data, tabletop) { 
