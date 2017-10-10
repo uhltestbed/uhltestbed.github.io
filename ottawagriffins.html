@@ -32,18 +32,19 @@
       callback: showInfo,
     simpleSheet: true } )
     }
-    function showInfo(data, tabletop) {
+  function showInfo(data, tabletop) {
     console.log(data);
     for (var i = 0; i < data.length; i++) {
-    $(‘.post’).append(
-    ‘<div class=”player”>’ +
-    ‘<h1>’ + data[i].player-name + ‘</h1>’+
-    data[i].body +
-    ‘</div>);
+      $(‘.post’).append(
+      ‘<body>’ +   
+      ‘<div class=”player”>’ +
+      ‘<h1>’ + data[i].player-name + ‘</h1>’+
+      ‘</div> +
+      ‘</body>’ + );
     }
-    }
+  }
     window.addEventListener(‘DOMContentLoaded’, init)
-*/
+
   </script>
   
   <body>
