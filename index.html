@@ -1,26 +1,98 @@
-<!DOCTYPE html>
-
-<!--<html>
-<body>
-<h1>Hello World</h1>
-<p>I'm hosted with GitHub Pages.</p>
-</body>
-</html>
--->
-
 <html>
-<script type="text/javascript">    
-$.getJSON("https://spreadsheets.google.com/feeds/list/11PCKoTw3_yMVsSYMwkbz1MHStuoWrODmULb66EjrzLM/od6/public/values?alt=json-in-script&callback=X", function(data) {
-  //first row "title" column
-  console.log(data.feed.entry[0]['gsx$player-name']['$t']);
-});
-  </script>
-<div class=”post”>
+<head>
+	<title>csv vs tabletop example</title>
+	<style type="text/css">
+		body {
+			margin: 0;
+			padding: 0;
+			background-color: #151926;
+			font-family: "MyriadPro-Regular", "Myriad Pro Regular", MyriadPro, "Myriad Pro", Helvetica, Arial, sans-serif;
+			font-size: 24px;
+			color: #ccc;
+		}
+		#wrapper {
+			margin: 20px 20px 150px 20px;
+			width: 100%;
+		}
+		h2 {
+			color: #eee;
+		}
+		input {
+			border: none;
+			display: inline-block;
+			font-family: inherit;
+			font-size: inherit;
+			padding-left: 5px;
+			padding-top: 3px;
+			vertical-align: middle;
+		}
+		input.textinput {
+			width: 450px;
+		}
+		input.button {
+			cursor: pointer;
+		}
+		#csvdiv, #tabletopdiv {
+			display: inline-block;
+			width: 350px;
+			vertical-align: top;
+		}
+	</style>
+    <script type="text/javascript" src="tabletop.js"></script>
+	<script type="text/javascript" src="http://mbostock.github.com/d3/d3.min.js"></script>
 
-  
-    Hey3
-  
-</div>
+</head>
+<body>
+<div id="wrapper">
 
-</body> 
+	<h2>csv vs tabletop.js example</h2>
+
+<!-- form handling -->
+<script type="text/javascript">var submitted=false;</script>
+<iframe name="hidden_iframe" id="hidden_iframe" style="display:none;" onload="if(submitted) {window.location=document.URL;}"></iframe>
+<form action="https://docs.google.com/forms/d/1U6tF62V18UKVlWIJTXlaBzWufN50FzVuSNT9hRL5PS4/formResponse" method="POST" id="ss-form" target="hidden_iframe" onsubmit="submitted=true;">
+	<input class="textinput" placeholder="Enter an item" type="text" name="entry.991199735" value="" id="entry_991199735" dir="auto" autocorrect="off" autocomplete="off">
+	<input type="hidden" name="draftResponse" value="[]">
+	<input type="hidden" name="pageHistory" value="0">
+	<input type="submit" name="submit" value="Submit" id="ss-submit" class="button">
+</form>
+
+
+<div id="csvdiv"><p>csv</p></div>
+<div id="tabletopdiv"><p>tabletop</p></div>
+
+<!-- pull the spreadsheet data from google drive generated spreadsheet file via tabletop.js -->
+<script type="text/javascript">
+	window.onload = function() { init() };
+	function init() {
+		Tabletop.init({key: '0ApMOA8U0y53_dGJpUzdMTGYyLWVGckZMOWRGNXB1Vnc', callback: showInfo, simpleSheet: true});
+	}
+	function showInfo(data) {
+		data.reverse();
+	    var tabletopdiv = d3.select("#tabletopdiv")
+	    	.append("ul");
+	    var tabletoprows = tabletopdiv.selectAll("li")
+	        .data(data)
+	        .enter()
+	        .append("li")
+	        .text(function(d) { return d.input; });
+	}
+</script>
+
+<!-- pull the spreadsheet data directly from google drive generated csv file -->
+<script type="text/javascript">
+	d3.csv("https://docs.google.com/spreadsheet/pub?key=0ApMOA8U0y53_dGJpUzdMTGYyLWVGckZMOWRGNXB1Vnc&output=csv", function(data, error) {
+		data.reverse();
+		var csvdiv = d3.select("#csvdiv")
+			.append("ul");
+		var csvrows = csvdiv.selectAll("li")
+			.data(data)
+			.enter()
+			.append("li")
+			.text(function(d) { return d.input; });
+	});
+</script>
+
+</div> <!-- /wrapper -->
+</body>
 </html>
