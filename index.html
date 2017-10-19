@@ -13,7 +13,7 @@
 <script type='text/javascript'>    
 $.getJSON("https://spreadsheets.google.com/feeds/list/11PCKoTw3_yMVsSYMwkbz1MHStuoWrODmULb66EjrzLM/od6/public/values?alt=json-in-script&callback=", function(data) {
   //first row "title" column
-  console.log(data.feed.entry[0]['gsx$title']['$t']);
+  console.log(data.feed.entry[0]['gsx$player-name']['$t']);
 });
   </script>
 <div class=”post”>
