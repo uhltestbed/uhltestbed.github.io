@@ -11,50 +11,11 @@
 <html>
 <script type="text/javascript" src="tabletop.js"></script>
 <script type='text/javascript'>    
-  /*var publicSpreadsheetUrl = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vROgwqLcIX9SzmeVQDSsa7fP7RWHnLKl70TBh9flEofHT3tF2pGuW78W6k0o_If4ULoGzj9oiWBnbS-/pubhtml';
-  function init() {
-    Tabletop.init( { key: publicSpreadsheetUrl,
-                     callback: showInfo,
-                     simpleSheet: true } )
-  }
-  function showInfo(data, tabletop) {
-    alert('Successfully processed!')
-    console.log(data);
-  }
-    function showInfo(data, tabletop) {
-    console.log(data);
-    for (var i = 0; i < data.length; i++) {
-    $(‘.post’).append(
-    ‘<div class=”player”>’ +
-    ‘<h1>’ + data[i].player-name + ‘</h1>’+   
-    ‘</div>);
-    }
-  window.addEventListener('DOMContentLoaded', init)
-*/</script>
-
-
-<script type="text/javascript">
-  function init() {
-    Tabletop.init( { key: ‘11PCKoTw3_yMVsSYMwkbz1MHStuoWrODmULb66EjrzLM’,
-      callback: showInfo,
-    simpleSheet: true } )
-    }
-  function showInfo(data, tabletop) {
-    console.log(data);
-    for (var i = 0; i < data.length; i++) {
-      $(‘.post’).append(
-      ‘<body>’ +   
-      ‘<div class=”player”>’ +
-      ‘<h1>’ + data[i].player-name + ‘</h1>’+
-      ‘</div> +
-      ‘</body>’ + );
-    }
-  }
-    window.addEventListener(‘DOMContentLoaded’, init)
+$.getJSON("https://spreadsheets.google.com/feeds/list/11PCKoTw3_yMVsSYMwkbz1MHStuoWrODmULb66EjrzLM/od6/public/values?alt=json", function(data) {
+  //first row "title" column
+  console.log(data.feed.entry[0]['gsx$title']['$t']);
+});
   </script>
-  
-  <body>
-
 <div class=”post”>
 
   
