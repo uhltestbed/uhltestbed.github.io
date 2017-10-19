@@ -1,6 +1,6 @@
 <html>
 <head>
-	<title>TEST2</title>
+	<title>TEST3</title>
 <!--    <script type="text/javascript" src="tabletop.js"></script>
 	<script type="text/javascript" src="http://mbostock.github.com/d3/d3.min.js"></script>
 -->
@@ -8,31 +8,9 @@
 <body>
 <div id="wrapper">
 
-	
+	<iframe height="600px" width="100%" style="border:none;" src="https://view-awesome-table.com/-KwnWLRdIjVLaG0Zr0jM/view"></iframe>
 
 
-<div class="results"></div> 
-
-<script>
- 
- // ID of the Google Spreadsheet
- var spreadsheetID = "11PCKoTw3_yMVsSYMwkbz1MHStuoWrODmULb66EjrzLM";
-
- // Make sure it is public or set to Anyone with link can view 
- var url = "https://spreadsheets.google.com/feeds/list/" + spreadsheetID + "/od6/public/values?alt=json";
-
- $.getJSON(url, function(data) {
-
-  var entry = data.feed.entry;
-
-  $(entry).each(function(){
-    // Column names are name, age, etc.
-    $('.results').prepend('<h2>'+this.gsx$position.$t+'</h2><p>'+this.gsx$contract.$t+'</p>');
-  });
-
- });
-
-</script>
 
 </div> <!-- /wrapper -->
 </body>
