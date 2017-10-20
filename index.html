@@ -8,8 +8,21 @@
 <body>
 <div id="wrapper">
 
-	[google-drive-embed url="https://docs.google.com/a/mycompany.com/spreadsheets/d/15B___SOYjsRmU9tiwZly318HZnFHOHeayS6UTHx7Pu2I/htmlembed" width="100%" 
-height="260" style="embed"]
+	<script>
+  function displayContent(json) {
+		 var string = "<table>";      
+            var len = json.feed.entry.length;
+            for (var i=0; i<len; i++) {
+                  var itemNum = json.feed.entry[i].gsx$itemnum.$t;
+                  var cost = json.feed.entry[i].gsx$cost.$t;
+                  var msrp = json.feed.entry[i].gsx$msrp.$t;
+				  string += '<tr><td>' + itemNum + '</td><td>' + cost + '</td><td>' + msrp + '</td></tr>';
+            }
+			string += "</table>";
+			$(string).appendTo('body');
+        }   
+		</script>
+<script src="http://spreadsheets.google.com/feeds/list/17UFRY5IHNNA08M3C6J7KLl_mtZxYNtiZNJ3aPXhfEaM/od6/public/values?alt=json-in-script&amp;callback=displayContent" type="text/javascript"></script>
 
 
 
